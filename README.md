@@ -6,6 +6,8 @@ https://kubernetes.io/docs/tasks/tools/
 
 - Kubeflow
 
+AI Platforms on Kubernetes
+
 https://github.com/kubeflow/kubeflow
 
 - Minikube
