@@ -10,6 +10,11 @@
 
   kubectl delete pod PODNAME
 
+  kubectl get pods -o wide
+
+  kubectl proxy ( start a proxy on the local machine - 127.0.0.1:8001 )
+  http://127.0.0.1:8001/api/v1/namespaces/default/pods
+
 - **Kubeflow - AI Platforms on Kubernetes**
 
   https://github.com/kubeflow/kubeflow
