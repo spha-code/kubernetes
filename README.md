@@ -4,6 +4,12 @@
 
   Kubernetes command-line tool, kubectl installation: https://kubernetes.io/docs/tasks/tools/
 
+  kubectl get pods
+
+  kubectl logs PODNAME
+
+  kubectl delete pod PODNAME
+
 - **Kubeflow - AI Platforms on Kubernetes**
 
   https://github.com/kubeflow/kubeflow
