@@ -30,7 +30,7 @@
   -  Use Kustomize to customize them if needed.
   -  Use kubectl to apply them to a Kubernetes cluster.
 
-  # 2. Kind runs all the Kubernetes components (API server, scheduler, etc.) in a single-node cluster
+  # 2. Install Kind and run a cluster on WSL
 
   - Step 1: Install Kind on WSL:
     
@@ -67,6 +67,12 @@
   - Step 5: Optional: delete the cluster when done:
 
     `kind delete cluster`
+ 
+    Now you have a fully working local Kubernetes environment on WSL:
+
+    kubectl → your CLI to interact with Kubernetes.
+    
+    kind → a lightweight Kubernetes cluster running inside Docker Desktop.
   
     - **Kubeflow - AI Platforms on Kubernetes**
     
