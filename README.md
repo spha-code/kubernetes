@@ -1,6 +1,7 @@
 # kubernetes
 
 - **Notes on Kubernetes for WSL Local Deployment**
+- Cluster -> Node -> Pod -> Container -> Images
 
   # 1. kubectl - CLI tool to talk to a Kubernetes cluster (comes bundled with kustomize)
 
@@ -25,31 +26,48 @@
 
   Flow:
   
-  -  You write or get YAML manifests (definitions of apps).
+  -  You write or get YAML manifests (definitions of apps)
   -  Use Kustomize to customize them if needed.
   -  Use kubectl to apply them to a Kubernetes cluster.
 
-  # 2. Minikube runs all the Kubernetes components (API server, scheduler, etc.) in a single-node cluster
+  # 2. Kind runs all the Kubernetes components (API server, scheduler, etc.) in a single-node cluster
 
-  - Install Minikube on WSL:
+  - Step 1: Install Kind on WSL:
     
-  `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64`
-  `sudo install minikube-linux-amd64 /usr/local/bin/minikube`
-  `minikube version`
+    `curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64`
+    
+    `chmod +x ./kind`
+  
+    `sudo mv ./kind /usr/local/bin/kind`
 
-  Kubernetes command-line tool, 
+    `kind version`
 
-  kubectl get pods
+  - Step 2: Create a Kubernetes cluster:
+ 
+    `kind create cluster`
 
-  kubectl logs PODNAME
+  - Step 3: Verify the cluster:
+ 
+    `kubectl get nodes`
 
-  kubectl delete pod PODNAME
+    `kubectl cluster-info`
 
-  kubectl get pods -o wide
+  - Step 4: Test a deployment:
+ 
+    `kubectl create deployment hello-kind --image=k8s.gcr.io/echoserver:1.4`
 
-  kubectl proxy ( start a proxy on the local machine - 127.0.0.1:8001 )
-  http://127.0.0.1:8001/api/v1/namespaces/default/pods
+    `kubectl get pods`
+  
+    `kubectl expose deployment hello-kind --type=NodePort --port=8080`
 
+    `minikube service hello-kind  # optional if you want to see it in browser`
+
+    `kubectl port-forward service/hello-kind 8080:8080` - Then open http://localhost:8080 in your browser.
+
+  - Step 5: Optional: delete the cluster when done:
+
+    `kind delete cluster`
+  
 - **Kubeflow - AI Platforms on Kubernetes**
 
   https://github.com/kubeflow/kubeflow
