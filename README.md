@@ -73,6 +73,25 @@
     kubectl → your CLI to interact with Kubernetes.
     
     kind → a lightweight Kubernetes cluster running inside Docker Desktop.
+
+ 
+        A Kubernetes cluster is the top-level entity. It is made up of nodes. Each node is a machine (physical or virtual).
+        Nodes have roles, not sub-nodes. Control plane node(s) → manage the cluster.
+        Worker node(s) → run your applications (Pods/containers). A node cannot contain other nodes.        
+        Pods → Containers → Images. Worker nodes run Pods. Pods contain containers, which are instances of images.
+        
+        Cluster
+         ├─ Node (Control Plane Role)
+         ├─ Node (Worker Role)
+         ├─ Node (Worker Role)
+         ...
+         └─ Node (Optional: Control Plane + Worker on same node in local cluster)
+               └─ Pod
+                    └─ Container
+                         └─ Image
+
+    <img width="1024" height="1024" alt="ChatGPT Image Nov 19, 2025, 11_38_38 PM" src="https://github.com/user-attachments/assets/02410853-9b14-46e6-9d86-e66b37865715" />
+
   
     - **Kubeflow - AI Platforms on Kubernetes**
     
