@@ -30,7 +30,7 @@
   -  Use Kustomize to customize them if needed.
   -  Use kubectl to apply them to a Kubernetes cluster.
 
-  # 2. Install Kind and run a kubernetes cluster on WSL
+  # 2. Install Kind and run a kubernetes cluster on WSL - Kind spins up a Kubernetes cluster inside Docker containers
 
   - Step 1: Install Kind on WSL:
     
