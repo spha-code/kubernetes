@@ -1,32 +1,43 @@
 # kubernetes
 
-- **Notes on Kubernetes Local Deployment**
+- **Notes on Kubernetes for WSL Local Deployment**
 
-  1. kubectl - CLI tool to talk to a Kubernetes cluster (comes bundled with kustomize)
-  # Download the latest stable version
-  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  # 1. kubectl - CLI tool to talk to a Kubernetes cluster (comes bundled with kustomize)
 
-  # Make it executable
-  chmod +x kubectl
+  - Download the latest stable version
+  `curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"`
+
+    or see here: kubectl installation: https://kubernetes.io/docs/tasks/tools/
+
+  - Make it executable
+  `chmod +x kubectl`
   
-  # Move it to a directory in your PATH
-  sudo mv kubectl /usr/local/bin/
+  - Move it to a directory in your PATH
+  `sudo mv kubectl /usr/local/bin/`
   
-  # Verify installation
-  kubectl version --client
-  shows:
-  a. kubectl client version 
+  - Verify installation `kubectl version --client`
+  
+  Output of `kubectl version --client` :
+
+  a. kubectl client version
+  
   b. Kustomize (bundled with kubectl) - Helps you customize Kubernetes YAML files without changing the original files.
 
-  Flow
+  Flow:
   
   -  You write or get YAML manifests (definitions of apps).
   -  Use Kustomize to customize them if needed.
   -  Use kubectl to apply them to a Kubernetes cluster.
 
-  2.   
-  
-  Kubernetes command-line tool, kubectl installation: https://kubernetes.io/docs/tasks/tools/
+  # 2. Minikube runs all the Kubernetes components (API server, scheduler, etc.) in a single-node cluster
+
+  - Install Minikube on WSL:
+    
+  `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64`
+  `sudo install minikube-linux-amd64 /usr/local/bin/minikube`
+  `minikube version`
+
+  Kubernetes command-line tool, 
 
   kubectl get pods
 
