@@ -97,6 +97,8 @@ So you get a single-node cluster where the control plane node also acts as a wor
 #### ➤ Check pods  
     kubectl get pods
 
+A pod is the smallest deployable unit in Kubernetes. It can contain one or more containers (usually one). Pods are ephemeral: they can be created, destroyed, or rescheduled at any time.
+
 #### ➤ Expose the deployment - Make the application accessible from outside the cluster  
     kubectl expose deployment hello-kind --type=NodePort --port=8080 --target-port=80
 
