@@ -104,8 +104,6 @@ A pod is the smallest deployable unit in Kubernetes. It can contain one or more 
 #### ➤ Expose the deployment - Make the application accessible from outside the cluster  
     kubectl expose deployment hello-kind --type=NodePort --port=8080 --target-port=80
 
-    
-
 #### ➤ (Optional) Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
 
     kubectl get svc hello-kind
@@ -115,6 +113,9 @@ A pod is the smallest deployable unit in Kubernetes. It can contain one or more 
     kubectl port-forward service/hello-kind 8080:8080
 
 Open **http://localhost:8080** to see the service running.
+
+__Service:__ exposes one or more pods to other pods or external traffic
+__One Service → many pods, one pod → many containers/images__
 
 ---
 
