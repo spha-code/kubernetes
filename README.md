@@ -102,7 +102,7 @@ So you get a single-node cluster where the control plane node also acts as a wor
 
     
 
-#### ➤ Opitonal: Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
+#### ➤ (Optional) Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
 
     kubectl get svc hello-kind
 
