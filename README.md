@@ -9,7 +9,7 @@ Kubernetes (K8s) builds on top of Docker (or any container runtime), but it adds
 
 ## 🎯 Table of Contents
 
-- 📖 About The Project
+- 📖 About this K8s (K + 8letters +s : Kubernetes) Guide
 - ✅ Prerequisites
 - 🛠️ Installation and Setup
   - 1. Install kubectl
@@ -22,7 +22,7 @@ Kubernetes (K8s) builds on top of Docker (or any container runtime), but it adds
 
 ---
 
-## 📖 About The Project
+## 📖 About this K8s guide
 
 This guide walks you through creating a full Kubernetes (kubectl and kind) environment locally using WSL  
 
