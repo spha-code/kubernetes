@@ -121,6 +121,22 @@ __Service:__ exposes one or more pods to other pods or external traffic
 
 __One Service → many pods, one pod → many containers/images__
 
+#### ➤ Scale your Deployment to multiple replicas
+
+    kubectl scale deployment hello-kind --replicas=3
+
+After scaling to 3 replicas run again
+
+    kubectl get pods
+
+#### ➤ Perform a rolling update to upgrade your Nginx version without downtime.
+
+    kubectl set image deployment/hello-kind nginx=nginx:latest
+
+After running this, you can check the rollout status:
+
+    kubectl rollout status deployment/hello-kind
+
 ---
 
 ## 💡 Understanding the Workflow
