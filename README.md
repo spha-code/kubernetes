@@ -1,6 +1,7 @@
 # 🚀 Local Kubernetes Lab with Kind on WSL
 
 A clean, visually appealing guide to setting up a lightweight local Kubernetes environment on **Windows Subsystem for Linux (WSL)** using **kubectl** and **kind**.
+Kubernetes (K8s) builds on top of Docker (or any container runtime), but it adds orchestration, scaling, and self-healing.
 
 ![Kubernetes Workflow](https://github.com/user-attachments/assets/02410853-9b_14-46e6-9d86-e66b37865715)
 
@@ -69,11 +70,19 @@ Kind runs Kubernetes clusters inside Docker containers.
     kind version
 
 #### ➤ Create a Kubernetes cluster  
-    kind create cluster
+    kind create cluster --name learning-cluster
 
-#### ➤ Verify the cluster  
-    kubectl get nodes  
+By default, kind creates:
+
+__1 control plane node__ (runs the Kubernetes API server, scheduler, etc.)        
+__0 worker nodes__ (just the control plane)
+
+So you get a single-node cluster where the control plane node also acts as a worker node. 
+
+#### ➤ Now the cluster is created - Verify the cluster  
+    kubectl get nodes
     kubectl cluster-info
+    kubectl version
 
 #### ➤ (Optional) Delete the cluster  
     kind delete cluster
@@ -82,16 +91,25 @@ Kind runs Kubernetes clusters inside Docker containers.
 
 ## 🚀 Test Your Deployment
 
-#### ➤ Create a test deployment  
-    kubectl create deployment hello-kind --image=k8s.gcr.io/echoserver:1.4
+#### ➤ Create a test deployment - a Deployment acts as your automated application manager
+        kubectl create deployment hello-kind --image=nginx     
+                                                 ↑
+                                                 This is the ACTUAL application code
 
 #### ➤ Check pods  
     kubectl get pods
 
 #### ➤ Expose the deployment  
-    kubectl expose deployment hello-kind --type=NodePort --port=8080
+    kubectl expose deployment hello-kind --type=NodePort --port=8080 --target-port=80
+
+    
+
+#### ➤ Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
+
+    kubectl get svc hello-kind
 
 #### ➤ Forward traffic to your machine  
+    
     kubectl port-forward service/hello-kind 8080:8080
 
 Open **http://localhost:8080** to see the service running.
