@@ -97,16 +97,16 @@ So you get a single-node cluster where the control plane node also acts as a wor
 #### ➤ Check pods  
     kubectl get pods
 
-#### ➤ Expose the deployment  
+#### ➤ Expose the deployment - Make the application accessible from outside the cluster  
     kubectl expose deployment hello-kind --type=NodePort --port=8080 --target-port=80
 
     
 
-#### ➤ Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
+#### ➤ Opitonal: Check what NodePort was assigned - NodePort defaults to 30000-32767 unless set with `--node-port`
 
     kubectl get svc hello-kind
 
-#### ➤ Forward traffic to your machine  
+#### ➤ Forward traffic to your machine - creates a temporary tunnel (Dies when you close terminal)  
     
     kubectl port-forward service/hello-kind 8080:8080
 
