@@ -137,6 +137,64 @@ After running this, you can check the rollout status:
 
     kubectl rollout status deployment/hello-kind
 
+#### ➤ Export your current Deployment from the cluster into a local YAML file called hello-kind-deployment.yaml
+
+    kubectl get deployment hello-kind -o yaml > hello-kind-deployment.yaml
+
+#### ➤ Edit the hello-kind-deployment.yaml to add liveness and readiness probes, so Kubernetes can perform self-healing.
+
+    nano hello-kind-deployment.yaml
+
+Add this code in the Containers section:
+
+          containers:
+    - image: nginx:latest
+      imagePullPolicy: Always
+      name: nginx
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 5
+
+ Save the YAML file. Apply it back to the cluster:
+
+     kubectl apply -f hello-kind-deployment.yaml
+
+#### ➤ Test self-healing probes safely without manually stopping processes inside the pod. 
+
+The idea is to temporarily make the pod fail its liveness probe and watch Kubernetes restart it.
+
+__Check the pods:__
+
+     kubectl get pods 
+
+__Use kubectl patch to change the probe path. You can point the liveness probe to a path that doesn’t exist, causing it to fail:__
+
+      kubectl patch deployment hello-kind \
+    --type='json' \
+    -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/livenessProbe/httpGet/path", "value": "/fail"}]'
+
+__Watch the pods restart:__
+
+    kubectl get pods -w
+    
+__Restore the original path:__
+
+      kubectl patch deployment hello-kind \
+    --type='json' \
+    -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/livenessProbe/httpGet/path", "value": "/"}]'
+
 ---
 
 ## 💡 Understanding the Workflow
