@@ -141,9 +141,11 @@ Your Kubernetes environment follows this architecture:
 - **kind** — Local Kubernetes-in-Docker  
 - **Cluster** — The full Kubernetes system  
 - **Node** — Machine in the cluster  
-- **Pod** — Smallest deployable unit  
-- **Container** — Runs your application  
-
+- **Pod** — a single running container (the smallest unit)  
+- **Container** — Runs your application   
+- **Deployment** — Runs and manages Pods
+- **Service** — Exposes Pods to the network
+- **Namespace** — Organizes resources
 ---
 
 ## 🤖 AI on Kubernetes: Kubeflow
