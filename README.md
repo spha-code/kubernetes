@@ -3,8 +3,6 @@
 A clean, visually appealing guide to setting up a lightweight local Kubernetes environment on **Windows Subsystem for Linux (WSL)** using **kubectl** and **kind**.
 Kubernetes (K8s) builds on top of Docker (or any container runtime), but it adds orchestration, scaling, and self-healing.
 
-__Analogy:__ Think of Docker as a single car. Kubernetes is a traffic control system for thousands of cars,
-
 ---
 
 ## 🎯 Table of Contents
